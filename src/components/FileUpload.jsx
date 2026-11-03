@@ -21,14 +21,30 @@ export default function FileUpload({
   imageOnly,
   onUploaded,
 }) {
+  const [file, setFile] = useState(null);
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    if (file) {
+      const body = new FormData();
+      body.append("file", file);
+      fetch(endpoint, {
+        method: "POST",
+        body,
+      })
+        .then(console.log)
+        .catch(console.warn)
+        .finally(() => {});
+    } else {
+      return toast.warn("Choose a file first!");
+    }
   };
 
   const handleUploadInputChange = (e) => {
     console.log("e.target.files", e?.target?.files);
     if (e?.target?.files && e?.target?.files[0]) {
-      FileUpload(e?.target?.files[0]);
+      setFile(e?.target?.files[0]);
     }
   };
 
@@ -37,7 +53,13 @@ export default function FileUpload({
       <h2>
         {icon} {title}
       </h2>
-      <input type="file" accept={accept} onChange={handleUploadInputChange} />
+      <input
+        name="file"
+        id="file"
+        type="file"
+        accept={accept}
+        onChange={handleUploadInputChange}
+      />
 
       <button type="submit">
         <FaUpload />
