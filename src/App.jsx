@@ -1,5 +1,5 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import UploadPage from './components/UploadPage.jsx';
+import { Routes, Route, Navigate } from "react-router-dom";
+import UploadPage from "./components/UploadPage.jsx";
 
 /**
  * Root component: defines client-side routes (react-router-dom).

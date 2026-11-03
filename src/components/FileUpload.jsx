@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { FaUpload, FaTimes } from 'react-icons/fa';
-import { toast } from 'react-toastify';
+import { useEffect, useRef, useState } from "react";
+import { FaUpload, FaTimes } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 /**
  * Upload form: picks a file, previews images, and POSTs it as multipart/form-data.
@@ -13,19 +13,35 @@ import { toast } from 'react-toastify';
  * @param {() => void} [props.onUploaded] Called after a successful upload
  * @returns {JSX.Element}
  */
-export default function FileUpload({ title, icon, endpoint, accept, imageOnly, onUploaded }) {
+export default function FileUpload({
+  title,
+  icon,
+  endpoint,
+  accept,
+  imageOnly,
+  onUploaded,
+}) {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+  };
 
+  const handleUploadInputChange = (e) => {
+    console.log("e.target.files", e?.target?.files);
+    if (e?.target?.files && e?.target?.files[0]) {
+      FileUpload(e?.target?.files[0]);
+    }
+  };
 
   return (
-    <form className="card" >
+    <form className="card" onSubmit={handleFormSubmit}>
+      <h2>
+        {icon} {title}
+      </h2>
+      <input type="file" accept={accept} onChange={handleUploadInputChange} />
 
-      <input  type="file" accept={accept}  />
-
-
-      <button type="submit" >
-        <FaUpload /> 
+      <button type="submit">
+        <FaUpload />
       </button>
-
     </form>
   );
 }

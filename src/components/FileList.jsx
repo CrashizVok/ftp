@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 /**
  * Fetches and displays uploaded files from a GET endpoint.
@@ -11,11 +11,5 @@ import { toast } from 'react-toastify';
  * @returns {JSX.Element}
  */
 export default function FileList({ title, endpoint, refreshKey, imageOnly }) {
-
-
-  return (
-    <section className="card">
-
-    </section>
-  );
+  return <section className="card"></section>;
 }
